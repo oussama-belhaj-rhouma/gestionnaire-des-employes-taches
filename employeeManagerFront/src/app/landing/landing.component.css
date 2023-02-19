@@ -1,0 +1,31 @@
+a {
+    color: white;
+  }
+  
+  /* Position the link at the top right corner of the container */
+  .container {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    background-color: #eee;
+  }
+  
+  .link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+  }
+  .jumbotron {
+    background-color: #2982e9; /* Orange */
+    color: #ffffff;
+  }
+  .logo {
+    font-size: 200px;
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+  }

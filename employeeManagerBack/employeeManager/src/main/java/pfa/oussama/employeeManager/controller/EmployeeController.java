@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pfa.oussama.employeeManager.employee.Employee;
+import pfa.oussama.employeeManager.model.Employee;
 import pfa.oussama.employeeManager.service.EmployeeService;
 
 import java.util.List;

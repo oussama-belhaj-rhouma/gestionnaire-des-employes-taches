@@ -5,11 +5,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeeService } from './employee.service';
+import { EmployeeComponent } from './employee/employee.component';
+import { EmployeeService } from './services/employee.service';
+import { TacheComponent } from './tache/tache.component';
+import { LandingComponent } from './landing/landing.component';
+import { TacheService } from './services/tache.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EmployeeComponent,
+    TacheComponent,
+    LandingComponent
   ],
   imports: [
     FormsModule,
@@ -17,7 +24,7 @@ import { EmployeeService } from './employee.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, TacheService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

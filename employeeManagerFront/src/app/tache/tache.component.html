@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;">Tache Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+             <a class=" btn nav-link" role="button" (click)="onOpenModal(null,'add')">Add Tache <span class="sr-only">(current)</span></a>
+          </li>
+       </ul>
+       <form class="form-inline my-2 my-lg-0">
+          <input type="search" (ngModelChange)="searchTaches(key.value)" #key="ngModel" ngModel name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search taches..." required>
+       </form>
+    </div>
+  </nav>
+ 
+    
+ <div class="container" id="main-container">
+    <div class="row">
+        <div  *ngFor="let tache of taches" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="{{tache.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{tache.name}}</h5>
+                        <p class="m-0">{{tache.description}}</p>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><p class="m-1">Number of employees</p> {{tache.numberOfEmployees}}</li>
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a (click)="onOpenModal(tache,'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a  (click)="onOpenModal(tache,'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+ 
+                    <ul class="social-links list-inline mb-0">
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- Add Tache Modal -->
+ 
+ <div class="modal fade" id="addTacheModal"  tabindex="-1" role="dialog" aria-labelledby="addTacheModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog" role="document">
+   <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="addTacheModalLabel">Add Tache</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddTache(addForm)">
+          <div class="form-group">
+             <label for="name">Name</label>
+             <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">description</label>
+             <input type="text" ngModel name="description" class="form-control" id="description" placeholder="description" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">number Of Employees</label>
+             <input type="text" ngModel name="numberOfEmployees" class="form-control" id="numberOfEmployees" placeholder="number Of Employees" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Image URL</label>
+             <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
+          </div>
+          <div class="modal-footer">
+             <button type="button" id="add-tache-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary" >Save changes</button>
+          </div>
+          </form>
+       </div>
+    </div>
+  </div>
+  </div>
+ 
+ <!-- update TAches Modal -->
+ 
+ <div class="modal fade" id="updateTacheModal" tabindex="-1" role="dialog" aria-labelledby="tacheEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateTacheModalLabel">Edit tache {{editTache?.name}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+                   <label for="name">Name</label>
+                   <input ngModel="{{editTache?.name}}" type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+                </div>
+                <input type="hidden" ngModel="{{editTache?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+                <input type="hidden" ngModel="{{editTache?.tacheCode}}" name="tacheCode" class="form-control" id="tacheCode" placeholder="Email">
+                <div class="form-group">
+                   <label for="phone">Description</label>
+                   <input type="text" ngModel="{{editTache?.description}}" name="description" class="form-control" id="description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                   <label for="phone">Number of employees</label>
+                   <input type="text" ngModel="{{editTache?.numberOfEmployees}}" name="numberOfEmployees" class="form-control" id="numberOfEmployees" placeholder="number Of Employees">
+                </div>
+                <div class="form-group">
+                   <label for="phone">Image URL</label>
+                   <input type="text" ngModel="{{editTache?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+                </div>
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button data-dismiss="modal" (click)="onUpdateTache(editForm.value)" class="btn btn-primary" >Save changes</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteTacheModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Tahces</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete tache {{deleteTache.name} ?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteTache(deleteTache?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+  </div>
+  
+  <!-- Notification for no taches -->
+  <div *ngIf="taches?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO TACHES!</h4>
+    <p>No Taches were found.</p>
+  </div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="d-grid gap-2 col-2">
+  <a class="btn btn-primary" routerLink="">aller a la page initiale</a>
+ </div></div>

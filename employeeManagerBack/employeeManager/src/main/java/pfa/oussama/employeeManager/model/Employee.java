@@ -1,6 +1,5 @@
-package pfa.oussama.employeeManager.employee;
+package pfa.oussama.employeeManager.model;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

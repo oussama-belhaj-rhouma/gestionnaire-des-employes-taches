@@ -11,17 +11,17 @@ export class EmployeeService {
   constructor(private http: HttpClient){}
 
   public getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>('http://localhost:8080/employee/all');
+    return this.http.get<Employee[]>('http://localhost:8080/employee/all', { withCredentials: true });
   }
 
   public addEmployee( e: Employee): Observable<Employee>{
-      return this.http.post<Employee>('http://localhost:8080/employee/add', e);
+      return this.http.post<Employee>('http://localhost:8080/employee/add', e, { withCredentials: true });
   }
   public updateEmployee( e: Employee): Observable<Employee>{
-      return this.http.put<Employee>('http://localhost:8080/employee/update', e);
+      return this.http.put<Employee>('http://localhost:8080/employee/update', e, { withCredentials: true });
   }
   public deleteEmployee( id : number): Observable<void> {
-      return this.http.delete<void>(`http://localhost:8080/employee/delete/${id}`);
+      return this.http.delete<void>(`http://localhost:8080/employee/delete/${id}`, { withCredentials: true });
   }
 }
 

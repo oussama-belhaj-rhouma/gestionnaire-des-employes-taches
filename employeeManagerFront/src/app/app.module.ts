@@ -5,18 +5,29 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeeComponent } from './employee/employee.component';
+import { EmployeeComponent } from './employee_admin/employee.component';
 import { EmployeeService } from './services/employee.service';
 import { TacheComponent } from './tache/tache.component';
 import { LandingComponent } from './landing/landing.component';
 import { TacheService } from './services/tache.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import {EmployeeModComponent} from './employee-mod/employee-mod.component';
+import { EmployeeUserComponent } from './employee-user/employee-user.component';
+import {httpInterceptorProviders} from './interceptor/intex';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
     TacheComponent,
-    LandingComponent
+    LandingComponent,
+    EmployeeModComponent,
+    EmployeeUserComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,
@@ -24,7 +35,7 @@ import { TacheService } from './services/tache.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [EmployeeService, TacheService],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

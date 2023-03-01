@@ -9,7 +9,7 @@ import pfa.oussama.employeeManager.api.model.Tache;
 import pfa.oussama.employeeManager.api.service.TacheService;
 
 import java.util.List;
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/tache")
 public class TacheController {

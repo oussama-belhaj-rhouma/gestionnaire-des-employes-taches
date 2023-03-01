@@ -11,6 +11,7 @@ import { EmployeeService } from '../services/employee.service'
 })
 export class EmployeeComponent implements OnInit{
   title = 'employeemanagerapp';
+  content?: string;
   constructor(private service :EmployeeService ){}
 
   public employees!: Employee[];
@@ -28,10 +29,20 @@ export class EmployeeComponent implements OnInit{
         this.employees=Response;
       }, 
       (error : HttpErrorResponse)=>{
-        alert(error.message)
+        if (error.error) {
+          try {
+            const res = JSON.parse(error.error);
+            this.employees = res.message;
+          } catch {
+            this.content = `Error with status: ${error.status} - ${error.statusText}`;
+          }
+        } else {
+          this.content = `Error with status: ${error.status}`;
+        }
       }
     );
   }
+  
 
   public searchEmployees(key:string){
     const res : Employee[]=[];

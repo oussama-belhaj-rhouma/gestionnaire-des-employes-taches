@@ -1,6 +1,6 @@
 package pfa.oussama.employeeManager.api.controller;
-
 import javax.transaction.Transactional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,7 +9,7 @@ import pfa.oussama.employeeManager.api.model.Employee;
 import pfa.oussama.employeeManager.api.service.EmployeeService;
 
 import java.util.List;
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600, allowCredentials="true")
 
 @RestController
 @RequestMapping("/employee")

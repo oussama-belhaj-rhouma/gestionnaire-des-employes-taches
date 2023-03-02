@@ -40,6 +40,9 @@ export class AuthService {
       httpOptions
     );
   }
+  logout(){
+    localStorage.removeItem('token')
+  }
 
 
 }

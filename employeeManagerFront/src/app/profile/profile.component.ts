@@ -9,6 +9,8 @@ import { StorageService } from '../services/storage.service';
 export class ProfileComponent implements OnInit { 
   currentUser: any;
 
+
+
   constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {

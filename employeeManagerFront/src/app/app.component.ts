@@ -41,6 +41,11 @@ export class AppComponent  {
     }
 
   }
-
+  logout(): void {
+    this.authService.logout();
+    this.isLoggedIn = false;
+    this.showAdminBoard = false;
+    this.showModeratorBoard = false;
+  }
 
 }

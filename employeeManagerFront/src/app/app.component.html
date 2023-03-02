@@ -3,13 +3,22 @@
       <a href="#" class="navbar-brand">Home</a>
       <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/employee" class="nav-link" routerLink="employee">Admin Board</a>
+          <a href="/employee" class="nav-link" routerLink="employee">Employee (Admin)</a>
         </li>
         <li class="nav-item" *ngIf="showModeratorBoard">
-          <a href="/employeemod" class="nav-link" routerLink="employeemod">Moderator Board</a>
+          <a href="/employeemod" class="nav-link" routerLink="employeemod">Employee (Moderator)</a>
         </li>
         <li class="nav-item">
-          <a href="/employeeuser" class="nav-link" *ngIf="isLoggedIn" routerLink="employeeuser">User Board</a>
+          <a href="/employeeuser" class="nav-link" *ngIf="isLoggedIn && !showAdminBoard && !showModeratorBoard" routerLink="employeeuser">Employee (User)</a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/task" class="nav-link" routerLink="task">Task (Admin)</a>
+        </li>
+        <li class="nav-item" *ngIf="showModeratorBoard">
+          <a href="/taskmod" class="nav-link" routerLink="taskmod">Task (Moderator)</a>
+        </li>
+        <li class="nav-item">
+          <a href="/taskuser" class="nav-link" *ngIf="isLoggedIn && !showAdminBoard && !showModeratorBoard" routerLink="taskuser">Task (User)</a>
         </li>
       </ul>
   

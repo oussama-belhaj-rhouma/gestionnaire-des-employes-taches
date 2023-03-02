@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         this.reloadPage();
+        console.log(data);
+        console.log("tookeenn "+this.storageService.getUser().accessToken)
+        localStorage.setItem('token',this.storageService.getUser().accessToken);
+
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -44,10 +48,10 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  
   login(username: string, password: string) {
     this.authService.login(username, password).subscribe((response) => {
       localStorage.setItem('token', response.token);
+      console.log(response.token)
     });
   }
 

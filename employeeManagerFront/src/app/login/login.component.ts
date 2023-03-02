@@ -35,23 +35,19 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
-        console.log(data);
-        console.log("tookeenn "+this.storageService.getUser().accessToken)
+        this.routs.navigate(['/home']).then(() => {
+          window.location.reload();
+        })
         localStorage.setItem('token',this.storageService.getUser().accessToken);
 
       },
       error: err => {
         this.errorMessage = err.error.message;
+        console.log(this.errorMessage);
         this.isLoginFailed = true;
       }
-      
     });
-    if (this.isLoginFailed==false){  this.routs.navigate(['/home'])}
-   
-
   }
-
 
   reloadPage(): void {
     window.location.reload();
